@@ -1,4 +1,5 @@
-import { PrimaryGeneratedColumn, Column, Entity, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { PrimaryGeneratedColumn, Column, Entity, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from 'typeorm'
+import { Course } from '@models/course'
 
 @Entity()
 export class Student {
@@ -22,4 +23,8 @@ export class Student {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date
+
+  @ManyToMany(type => Course, course => course.students, { cascade: true })
+  @JoinTable()
+  courses: Course[]
 }
