@@ -1,23 +1,34 @@
-import { PrimaryGeneratedColumn, Column, Entity, CreateDateColumn, UpdateDateColumn, ManyToMany } from 'typeorm'
+import {
+  PrimaryGeneratedColumn,
+  Column,
+  Entity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToMany
+} from 'typeorm'
 import { Student } from '@models/student'
 
 @Entity()
 export class Course {
   @PrimaryGeneratedColumn('uuid')
-  id: string
+  id: string;
 
   @Column()
-  name: string
+  name: string;
 
   @Column()
-  hours: number
+  hours: number;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createdAt: Date
+  createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updatedAt: Date
+  updatedAt: Date;
 
-  @ManyToMany(type => Student, student => student.courses, { onDelete: 'CASCADE' })
-  students: Student[]
+  @ManyToMany(
+    (type) => Student,
+    (student) => student.courses,
+    { onDelete: 'CASCADE' }
+  )
+  students: Student[];
 }

@@ -1,30 +1,38 @@
-import { PrimaryGeneratedColumn, Column, Entity, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from 'typeorm'
+import {
+  PrimaryGeneratedColumn,
+  Column,
+  Entity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToMany,
+  JoinTable
+} from 'typeorm'
 import { Course } from '@models/course'
 
 @Entity()
 export class Student {
   @PrimaryGeneratedColumn('uuid')
-  id: string
+  id: string;
 
   @Column()
-  firstName: string
+  firstName: string;
 
   @Column()
-  lastName: string
+  lastName: string;
 
   @Column()
-  email: string
+  email: string;
 
   @Column()
-  age: number
+  age: number;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createdAt: Date
+  createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updatedAt: Date
+  updatedAt: Date;
 
-  @ManyToMany(type => Course, course => course.students, { cascade: true })
+  @ManyToMany((type) => Course, (course) => course.students, { cascade: true })
   @JoinTable()
-  courses: Course[]
+  courses: Course[];
 }
